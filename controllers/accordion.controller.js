@@ -1,5 +1,55 @@
 const accordionSchema = require('../models/accordion.model');
 
+const logError = (error) => {
+    console.error('Error: ', error);
+};
+
+exports.createAccordion = async (req, res) => {
+    const { title, subTitle } = req.body;
+
+
+    if (!req.file) {
+        return res.status(400).send({
+            message: 'No file uploaded',
+            isSuccess: false,
+        });
+    }
+
+    console.log(":::::::::", req.file);
+
+    if (!title || !subTitle) {
+        return res.status(400).send({
+            message: 'Title and subtitle are required',
+            isSuccess: false,
+        });
+    }
+
+    try {
+        const accordion = new accordionSchema({
+            image: req.file.filename,
+            title,
+            subTitle,
+        });
+
+
+        const data = await accordion.save();
+        return res.status(201).send({
+            data,
+            message: 'Accordion created successfully',
+            isSuccess: true,
+        });
+    } catch (error) {
+        logError(error);
+        return res.status(500).send({
+            message: 'Failed to create accordion',
+            isSuccess: false,
+        });
+    }
+};
+
+
+
+
 exports.getAccordion = async (req, res) => {
     try {
         const getData = await accordionSchema.find();

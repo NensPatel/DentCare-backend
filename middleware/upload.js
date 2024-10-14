@@ -1,7 +1,7 @@
 const multer = require('multer');
 const path = require('path');
 
-const multerStorage = multer.diskStorage({
+const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, 'public/uploads');
     },
@@ -37,6 +37,6 @@ const uploadAccordionImg = multer({
     storage: storage,
     fileFilter: fileFilter,
     limits: { fileSize: 10000000 * 5 },
-}).array('images', 20);
+}).array('image', 10);
 
 module.exports = { uploadAccordionImg };
