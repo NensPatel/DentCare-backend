@@ -4,9 +4,10 @@ const logError = (error) => {
     console.error('Error: ', error);
 };
 
+
+// Create POST Api
 exports.createAccordion = async (req, res) => {
     const { title, subTitle } = req.body;
-
 
     if (!req.file) {
         return res.status(400).send({
@@ -14,8 +15,7 @@ exports.createAccordion = async (req, res) => {
             isSuccess: false,
         });
     }
-
-    console.log(":::::::::", req.file);
+   
 
     if (!title || !subTitle) {
         return res.status(400).send({
@@ -48,8 +48,7 @@ exports.createAccordion = async (req, res) => {
 };
 
 
-
-
+// GET Api
 exports.getAccordion = async (req, res) => {
     try {
         const getData = await accordionSchema.find();
@@ -67,5 +66,4 @@ exports.getAccordion = async (req, res) => {
             isSuccess: false
         })
     }
-
 }   
