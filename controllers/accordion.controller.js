@@ -15,7 +15,6 @@ exports.createAccordion = async (req, res) => {
             isSuccess: false,
         });
     }
-   
 
     if (!title || !subTitle) {
         return res.status(400).send({
@@ -25,14 +24,19 @@ exports.createAccordion = async (req, res) => {
     }
 
     try {
-        const accordion = new accordionSchema({
-            image: req.file.filename,
+        const crtObj = {
             title,
             subTitle,
-        });
+        };
+
+        if (req.file) {
+            crtObj.image = "uploads/" + req.file.filename;
+        }
+
+        const data = new accordionSchema(crtObj);
+        await data.save();
 
 
-        const data = await accordion.save();
         return res.status(201).send({
             data,
             message: 'Accordion created successfully',

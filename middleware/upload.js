@@ -37,6 +37,6 @@ const uploadAccordionImg = multer({
     storage: storage,
     fileFilter: fileFilter,
     limits: { fileSize: 10000000 * 5 },
-}).array('image', 10);
+}).single('image');
 
 module.exports = { uploadAccordionImg };

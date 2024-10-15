@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const accordionSchema = new mongoose.Schema(
     {
         image: {
-            type: Number,
+            type: String,
             trim: true
         },
         title: {
