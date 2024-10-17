@@ -7,6 +7,7 @@ const AccordionRoutes = require('./accordion.route');
 const AppointmentRoutes = require('./appointment.route');
 const UserRoutes = require('./user.route');
 const TestimonialRoutes = require('./testimonial.route');
+const ContactRoutes = require('./contact.route');
 
 //Usable Routes
 router.use('/counter', CounterRoutes);
@@ -14,5 +15,6 @@ router.use('/accordion', AccordionRoutes);
 router.use('/appointment', AppointmentRoutes);
 router.use('/user', UserRoutes);
 router.use('/testimonial', TestimonialRoutes);
+router.use('/contact', ContactRoutes);
 
 module.exports = router;
