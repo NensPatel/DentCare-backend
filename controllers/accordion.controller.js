@@ -24,16 +24,16 @@ exports.createAccordion = async (req, res) => {
     }
 
     try {
-        const crtObj = {
+        const createObj = {
             title,
             subTitle,
         };
 
         if (req.file) {
-            crtObj.image = "uploads/" + req.file.filename;
+            createObj.image = "uploads/" + req.file.filename;
         }
 
-        const data = new accordionSchema(crtObj);
+        const data = new accordionSchema(createObj);
         await data.save();
 
 

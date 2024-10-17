@@ -6,5 +6,4 @@ const { getAccordion, createAccordion } = require('../controllers/accordion.cont
 router.get('/getAccordion', getAccordion);
 router.post('/createAccordion', uploadAccordionImg, createAccordion);
 
-
 module.exports = router;

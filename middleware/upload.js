@@ -33,10 +33,19 @@ const fileFilter = (req, file, cb) => {
     }
 }
 
+// Accordion
 const uploadAccordionImg = multer({
     storage: storage,
     fileFilter: fileFilter,
     limits: { fileSize: 10000000 * 5 },
 }).single('image');
 
-module.exports = { uploadAccordionImg };
+
+// Testimonial
+const uploadTestimonialImg = multer({
+    storage: storage,
+    fileFilter: fileFilter,
+    limits: { fileSize: 10000000 * 5 },
+}).single('image');
+
+module.exports = { uploadAccordionImg, uploadTestimonialImg };
