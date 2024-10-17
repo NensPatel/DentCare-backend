@@ -29,3 +29,23 @@ exports.createAppointment = async (req, res) => {
         });
     }
 };
+
+
+exports.getAppointment = async (req, res) => {
+    try {
+        const getData = await appointmentSchema.find();
+        const appointments = await appointmentSchema.countDocuments();
+        return res.status(200).send({
+            data: getData,
+            totalCount: appointments,
+            message: 'Appointments retrieved successfully',
+            isSuccess: true
+        });
+    } catch (error) {
+        return res.status(500).send({
+            error,
+            message: 'Failed to get Appointments due to server error',
+            isSuccess: false
+        });
+    }
+}
