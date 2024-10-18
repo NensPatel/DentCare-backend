@@ -1,9 +1,5 @@
 const accordionSchema = require('../models/accordion.model');
-
-const logError = (error) => {
-    console.error('Error: ', error);
-};
-
+const { convertFilePathSlashes } = require('../helpers/common');
 
 // Create POST Api
 exports.createAccordion = async (req, res) => {
@@ -29,13 +25,19 @@ exports.createAccordion = async (req, res) => {
             subTitle,
         };
 
-        if (req.file) {
-            createObj.image = "uploads/" + req.file.filename;
+        const filePath = convertFilePathSlashes(req.file.path);
+
+        if (!filePath) {
+            return res.status(400).send({
+                isSuccess: false,
+                message: "Image path is required.",
+            });
         }
+
+        createObj.image = filePath;
 
         const data = new accordionSchema(createObj);
         await data.save();
-
 
         return res.status(201).send({
             data,
@@ -43,7 +45,7 @@ exports.createAccordion = async (req, res) => {
             isSuccess: true,
         });
     } catch (error) {
-        logError(error);
+        console.error('Error creating accordion:', error);
         return res.status(500).send({
             message: 'Failed to create accordion',
             isSuccess: false,

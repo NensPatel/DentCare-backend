@@ -1,3 +1,4 @@
+const { convertFilePathSlashes } = require("../helpers/common");
 const testimonialSchema = require("../models/testimonial.model");
 
 const logError = (error) => {
@@ -40,10 +41,16 @@ exports.createTestimonial = async (req, res) => {
             work
         };
 
-        if (req.file) {
-            createObj.image = "uploads/" + req.file.filename;
+        const filePath = convertFilePathSlashes(req.file.path);
+
+        if (!filePath) {
+            return res.status(400).send({
+                message: "Image path is required",
+                isSuccess: false
+            })
         }
 
+        createObj.image = filePath
         const data = new testimonialSchema(createObj);
         await data.save();
 
