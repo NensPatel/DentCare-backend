@@ -18,5 +18,6 @@ router.use('/user', UserRoutes);
 router.use('/testimonial', TestimonialRoutes);
 router.use('/contact', ContactRoutes);
 router.use('/company', CompanyRoutes);
+router.use('/whychooseus', require('./whyChooseUs.route'));
 
 module.exports = router;

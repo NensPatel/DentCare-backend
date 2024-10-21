@@ -6,7 +6,8 @@ const { uniqueFilename } = require('../helpers/common');
 const folderPaths = {
     accordion: path.join(__dirname, '../public/accordion'),
     company: path.join(__dirname, '../public/company'),
-    testimonial: path.join(__dirname, '../public/testimonial')
+    testimonial: path.join(__dirname, '../public/testimonial'),
+    whychooseus: path.join(__dirname, '../public/whychooseus'),
 };
 
 // Central file filter function
@@ -72,6 +73,11 @@ const uploadConfiguration = {
         limits: { fileSize: 10000000 * 5 },
         fileFilter: fileFilter
     }).single('image'),
+    whychooseus: multer({
+        storage: dynamicStorage('whychooseus'),
+        limits: { fileSize: 10000000 * 5 },
+        fileFilter: fileFilter
+    }).single('image'),
 };
 
 // Multer configuration for no image upload
@@ -81,5 +87,6 @@ module.exports = {
     uploadAccordionImg: uploadConfiguration.accordion,
     uploadCompanyImg: uploadConfiguration.company,
     uploadTestimonialImg: uploadConfiguration.testimonial,
+    uploadWhyChooseUsImg: uploadConfiguration.whychooseus,
     noImg
 };
