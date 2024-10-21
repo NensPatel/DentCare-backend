@@ -8,6 +8,7 @@ const folderPaths = {
     company: path.join(__dirname, '../public/company'),
     testimonial: path.join(__dirname, '../public/testimonial'),
     whychooseus: path.join(__dirname, '../public/whychooseus'),
+    process: path.join(__dirname, '../public/process'),
 };
 
 // Central file filter function
@@ -78,6 +79,11 @@ const uploadConfiguration = {
         limits: { fileSize: 10000000 * 5 },
         fileFilter: fileFilter
     }).single('image'),
+    process: multer({
+        storage: dynamicStorage('process'),
+        limits: { fileSize: 10000000 * 5 },
+        fileFilter: fileFilter
+    }).single('image'),
 };
 
 // Multer configuration for no image upload
@@ -88,5 +94,6 @@ module.exports = {
     uploadCompanyImg: uploadConfiguration.company,
     uploadTestimonialImg: uploadConfiguration.testimonial,
     uploadWhyChooseUsImg: uploadConfiguration.whychooseus,
+    uploadProcessImg: uploadConfiguration.process,
     noImg
 };
