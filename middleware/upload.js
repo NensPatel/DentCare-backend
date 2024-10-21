@@ -10,6 +10,7 @@ const folderPaths = {
     whychooseus: path.join(__dirname, '../public/whychooseus'),
     process: path.join(__dirname, '../public/process'),
     service: path.join(__dirname, '../public/service'),
+    team: path.join(__dirname, '../public/team'),
 };
 
 // Central file filter function
@@ -89,7 +90,12 @@ const uploadConfiguration = {
         storage: dynamicStorage('service'),
         limits: { fileSize: 10000000 * 5 },
         fileFilter: fileFilter
-    }).single('image')
+    }).single('image'),
+    team: multer({
+        storage: dynamicStorage('team'),
+        limits: { fileSize: 10000000 * 5 },
+        fileFilter: fileFilter
+    }).single('image'),
 };
 
 // Multer configuration for no image upload
@@ -102,5 +108,6 @@ module.exports = {
     uploadWhyChooseUsImg: uploadConfiguration.whychooseus,
     uploadProcessImg: uploadConfiguration.process,
     uploadServiceImg: uploadConfiguration.service,
+    uploadTeamImg: uploadConfiguration.team,
     noImg
 };
