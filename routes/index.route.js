@@ -11,6 +11,7 @@ const ContactRoutes = require('./contact.route');
 const CompanyRoutes = require('./company.route');
 const WhychooseusRoutes = require('./whychooseus.route');
 const ProcessRoutes = require('./process.route');
+const ServiceRoutes = require('./service.route');
 
 //Usable Routes
 router.use('/counter', CounterRoutes);
@@ -22,5 +23,6 @@ router.use('/contact', ContactRoutes);
 router.use('/company', CompanyRoutes);
 router.use('/whychooseus', WhychooseusRoutes);
 router.use('/process', ProcessRoutes);
+router.use('/service', ServiceRoutes);
 
 module.exports = router;
