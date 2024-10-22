@@ -60,7 +60,7 @@ exports.getWhychooseus = async (req, res) => {
     try {
         const getData = await WhyChooseUs.find();
         const whychooseus = await WhyChooseUs.countDocuments();
-        
+
         res.status(200).json({
             data: getData,
             totalCount: whychooseus,

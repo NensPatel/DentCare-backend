@@ -1,11 +1,10 @@
 const expres = require('express');
 const router = expres.Router();
 
-const createCompany = require('../controllers/company.controller');
-const getCompany = require('../controllers/company.controller');
+const { createCompany, getCompany } = require('../controllers/company.controller');
 const { uploadCompanyImg } = require('../middleware/upload');
 
-router.post('/createCompany', uploadCompanyImg, createCompany.createCompany);
-router.get('/getCompany', getCompany.getCompany);
+router.post('/createCompany', uploadCompanyImg, createCompany);
+router.get('/getCompany', getCompany);
 
 module.exports = router
