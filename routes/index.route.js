@@ -14,6 +14,7 @@ const ProcessRoutes = require('./process.route');
 const ServiceRoutes = require('./service.route');
 const TeamRoutes = require('./team.route');
 const SettingRoutes = require('./setting.route');
+const SocialMediaRoutes = require('./socialmedia.route');
 
 //Usable Routes
 router.use('/counter', CounterRoutes);
@@ -28,5 +29,6 @@ router.use('/process', ProcessRoutes);
 router.use('/service', ServiceRoutes);
 router.use('/team', TeamRoutes);
 router.use('/setting', SettingRoutes);
+router.use('/socialmedia', SocialMediaRoutes);
 
 module.exports = router;
