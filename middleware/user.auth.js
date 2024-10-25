@@ -18,11 +18,31 @@ exports.verifyUserToke = async (req, res, next) => {
     const bearerToken = token.split(" ")[1];
 
     try {
-
+        bearerToken,
+            process.env.USER_TOKEN_KEY,
+            async (error, authData) => {
+                if (error) {
+                    return res.status(401).send({
+                        error: error.message,
+                        message: "Invalid Token",
+                        isSuccess: false
+                    });
+                }
+                let user = await userSchema.findById({ _id: authData.id });
+                req.user = user;
+                if (!req.user) {
+                    return res.status(401).send({
+                        error: error.message,
+                        message: "Please pass token in header",
+                        isSuccess: false
+                    });
+                }
+                next();
+            }
     } catch (error) {
         return res.status(500).send({
             error: error.message,
-            message: "Invalid token",
+            message: "Something went wrong, Please try again later",
             isSuccess: false
         })
     }
