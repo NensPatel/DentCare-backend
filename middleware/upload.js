@@ -11,6 +11,7 @@ const folderPaths = {
     process: path.join(__dirname, '../public/process'),
     service: path.join(__dirname, '../public/service'),
     team: path.join(__dirname, '../public/team'),
+    setting: path.join(__dirname, '../public/setting'),
 };
 
 // Central file filter function
@@ -96,6 +97,15 @@ const uploadConfiguration = {
         limits: { fileSize: 10000000 * 5 },
         fileFilter: fileFilter
     }).single('image'),
+    setting: multer({
+        storage: dynamicStorage('setting'),
+        limits: { fileSize: 10000000 * 5 },
+        fileFilter: fileFilter
+    }).fields([
+        { name: "headerLogo", maxCount: 1 },
+        { name: "footerLogo", maxCount: 1 },
+        { name: "favicon", maxCount: 1 },
+    ])
 };
 
 // Multer configuration for no image upload
@@ -109,5 +119,6 @@ module.exports = {
     uploadProcessImg: uploadConfiguration.process,
     uploadServiceImg: uploadConfiguration.service,
     uploadTeamImg: uploadConfiguration.team,
+    uploadSettingImg: uploadConfiguration.setting,
     noImg
 };

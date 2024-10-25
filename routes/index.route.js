@@ -13,6 +13,7 @@ const WhychooseusRoutes = require('./whychooseus.route');
 const ProcessRoutes = require('./process.route');
 const ServiceRoutes = require('./service.route');
 const TeamRoutes = require('./team.route');
+const SettingRoutes = require('./setting.route');
 
 //Usable Routes
 router.use('/counter', CounterRoutes);
@@ -26,5 +27,6 @@ router.use('/whychooseus', WhychooseusRoutes);
 router.use('/process', ProcessRoutes);
 router.use('/service', ServiceRoutes);
 router.use('/team', TeamRoutes);
+router.use('/setting', SettingRoutes);
 
 module.exports = router;
